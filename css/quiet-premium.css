@@ -1,0 +1,128 @@
+/* A separate, removable layer: keep the exported layout and brand styling. */
+:root {
+  --motion-ease: cubic-bezier(.22, 1, .36, 1);
+  --motion-hover: 240ms;
+}
+
+.motion-pending {
+  opacity: 0;
+}
+
+/* Inline initial states from the export must not hide content without JS. */
+html:not(.w-mod-js) :is(.h2, .slider, .slider-2, .title-btn_5, .text-form_7) {
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+:is(.btn_nav, .btn_nav_mobile, .btn_1, .btn_3, .btn-icon, .btn_form, .submit-button) {
+  transition: transform var(--motion-hover) var(--motion-ease),
+    background-color var(--motion-hover) ease, color var(--motion-hover) ease,
+    box-shadow var(--motion-hover) ease;
+}
+
+.card_image_3 {
+  transition: transform 650ms var(--motion-ease);
+}
+
+.icon_5 {
+  transition: transform 320ms var(--motion-ease);
+}
+
+.line_item {
+  opacity: 1;
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 280ms var(--motion-ease);
+}
+
+:is(.instagram, .instagram_form, .close_form) {
+  transition: transform var(--motion-hover) var(--motion-ease), opacity var(--motion-hover) ease;
+}
+
+.footer_items {
+  transition: transform var(--motion-hover) var(--motion-ease), opacity var(--motion-hover) ease;
+}
+
+:is(.text-field, .text-field-2) {
+  transition: border-color 200ms ease, box-shadow 200ms ease;
+}
+
+.text-field-2:hover {
+  padding-left: 32px;
+}
+
+/* Reset the export's unconditional hover effects (including sticky touch hover). */
+:is(.btn_nav, .btn_nav_mobile, .btn_1, .btn_3, .btn-icon, .btn_form, .submit-button):hover {
+  box-shadow: none;
+  transform: none;
+}
+
+:is(.instagram, .instagram_form, .close_form):hover {
+  transform: none;
+}
+
+.footer_items:hover {
+  padding-left: 0;
+}
+
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  .card_3_wrapped:hover .card_image_3 {
+    transform: scale(1.03);
+  }
+
+  :is(.btn_nav, .btn_nav_mobile, .btn_1, .btn_3, .btn-icon, .btn_form, .submit-button):hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgb(56 40 32 / 14%);
+  }
+
+  .btn_1:hover {
+    box-shadow: 0 6px 18px rgb(0 0 0 / 18%);
+  }
+
+  .btn-icon:hover .icon_5 {
+    transform: translateX(5px);
+  }
+
+  .item_nav:hover .line_item {
+    transform: scaleX(1);
+  }
+
+  :is(.instagram, .instagram_form):hover {
+    transform: translateY(-2px);
+    opacity: .8;
+  }
+
+  .close_form:hover {
+    transform: scale(1.03);
+  }
+
+  .footer_items:hover {
+    transform: translateX(3px);
+    opacity: .8;
+  }
+}
+
+:is(a, button, input, [role="button"]):focus-visible {
+  outline: 2px solid #a77349;
+  outline-offset: 5px;
+}
+
+.item_nav:focus-visible .line_item {
+  transform: scaleX(1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .motion-pending {
+    opacity: 1;
+  }
+
+  :is(.btn_nav, .btn_nav_mobile, .btn_1, .btn_3, .btn-icon, .btn_form, .submit-button,
+    .card_image_3, .icon_5, .line_item, .instagram, .instagram_form, .close_form,
+    .footer_items, .text-field, .text-field-2) {
+    transition: none;
+  }
+}
